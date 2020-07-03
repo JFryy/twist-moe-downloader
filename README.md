@@ -1,8 +1,8 @@
 # Twist.Moe Downloader Helper
 
 ### Description
-[![Build Status](https://travis-ci.org/JFryy/twist-moe-downloader.svg?branch=master)](https://travis-ci.org/JFryy/twist-moe-downloader)
-![](examples/tty.gif)
+[![Build Status](https://travis-ci.org/JFryy/twist-moe-downloader.svg?branch=master)](https://travis-ci.org/JFryy/twist-moe-downloader) [![Downloads](https://pepy.tech/badge/twistdl)](https://pepy.tech/project/twistdl) 
+![](examples/tty.gif) [![PyPI version](https://badge.fury.io/py/twistdl.svg)](https://badge.fury.io/py/twistdl)
 This is a python cli tool and client for downloading video contents of series available on the website `twist.moe` locally.
 To download a particular series, use the series's url like so `https://twist.moe/a/made-in-abyss` and to search for
 a series enter a part of its name as found in a twist.moe's url string like `fate`.

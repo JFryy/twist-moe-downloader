@@ -42,7 +42,12 @@ class TwistDLCLI(object):
 
         sources = self.get_sources_from_range(first_episode, last_episode, anime)
 
-        path = self.get_path(anime)
+        if not user_input.directory:
+            path = self.get_path(anime)
+        else:
+            path = Path(user_input.directory)
+            path.mkdir(parents=True, exist_ok=True)
+
         self.download_files(path, sources)
 
     def get_path(self, anime):
@@ -139,7 +144,7 @@ class TwistDLCLI(object):
             dest='directory',
             help='Directory path to save downloaded contents',
             required=False,
-            default=''
+            default=None
         )
         parser.add_argument(
             '--range',

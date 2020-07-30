@@ -3,11 +3,12 @@
 ### Description
 [![Build Status](https://travis-ci.org/JFryy/twist-moe-downloader.svg?branch=master)](https://travis-ci.org/JFryy/twist-moe-downloader) [![Downloads](https://pepy.tech/badge/twistdl)](https://pepy.tech/project/twistdl) [![PyPI version](https://badge.fury.io/py/twistdl.svg)](https://badge.fury.io/py/twistdl)
 ![](examples/tty.gif)
-This is a python cli tool and client for downloading video contents of series available on the website `twist.moe` locally.
-To download a particular series, use the series's url like so `https://twist.moe/a/made-in-abyss` and to search for
-a series enter a part of its name as found in a twist.moe's url string like `fate`.
 
-Additional to the commandline interface this package also provides a pure python object oriented api for `twist.moe`.
+
+This is a python cli tool and client for downloading video contents of series available on the website `twist.moe` locally.
+To download a particular series, search for a series by entering a part of its name like `twistdl fate` or alternatively use the series's url string directly i.e. `twistdl https://twist.moe/a/made-in-abyss`.
+
+Additional to the commandline interface, this package also provides a small python object oriented api for `twist.moe`.
 
 Remember to support twist.moe with donations if you can, as they do a great job of operating their site!
 
@@ -81,7 +82,5 @@ for anime in animes:
 ```
 
 ##### Disclaimer
-Downloading copyright videos may be illegal in your country. This tool is for educational purposes only.
+Downloading copyright videos may be illegal in your country. This tool is for educational purposes only. Upstream changes to twist.moe can and will break functionality of this tool at some point.
 
-##### Additional Notes
-Special thanks to Nachtalb for refactoring this codebase to be modularized and include a client api.

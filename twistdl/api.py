@@ -1,5 +1,6 @@
 import requests
 import six
+from tqdm import tqdm
 
 from pathlib2 import Path
 from six.moves import filter
@@ -83,7 +84,7 @@ class TwistDL(object):
         Yield:
             Tuple like (chunks downloaded, total chunks)
         """
-        file_obj = None
+        file_str = str(file)
         if isinstance(file, Path) or (file is not None and isinstance(file, py3Path)):
             pass
         elif isinstance(file, six.string_types):
@@ -99,23 +100,15 @@ class TwistDL(object):
             'Referer': self.base_url
         }
 
-        response = requests.get(url, headers=headers, stream=True)
-
-        file_size = int(response.headers['Content-Length'])
-        toatal_chunks = int(file_size / chunk_size)
-
-        yield 0, toatal_chunks
-
-        if file_obj:
-            for chunks_downloaded, chunk in enumerate(response.iter_content(chunk_size=chunk_size), 1):
-                file_obj.write(chunk)
-                yield chunks_downloaded, toatal_chunks
-        else:
-            file.touch()
-            with file.open('wb') as file_obj:
-                for chunks_downloaded, chunk in enumerate(response.iter_content(chunk_size=chunk_size), 1):
-                    file_obj.write(chunk)
-                    yield chunks_downloaded, toatal_chunks
+        with requests.get(url, headers=headers, stream=True) as r:
+            r.raise_for_status()
+            with open(file, 'wb') as f:
+                pbar = tqdm(total=int(r.headers['Content-Length']), desc=file_str.split("/")[-1])
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+                        pbar.update(len(chunk))
 
     def download(self, url, file):
         list(self.download_stream(url, file))
+

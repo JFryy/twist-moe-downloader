@@ -59,11 +59,6 @@ class TwistDLCLI(object):
         for source in sources:
             filename = path / '{} - {:0>2}.mp4'.format(source.anime.title, source.number).replace('/', '-')
             downloader = self.client.download_stream(source.url, filename, 1024 * 1024)
-            _, total_size = next(downloader)
-
-            sizer = map(lambda status: status[0], downloader)
-            progress_bar = tqdm(sizer, total=total_size, unit='MB', desc=str(filename), leave=True)
-            list(progress_bar)
 
     def parse_title(self, title):
         url_match = re.findall('twist.moe/a/([a-z0-9-]+)', title)
@@ -167,3 +162,4 @@ def main():
         cli.main()
     except (KeyboardInterrupt, EOFError):
         print('Exit')
+
